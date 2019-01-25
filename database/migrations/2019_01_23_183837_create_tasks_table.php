@@ -17,12 +17,15 @@ class CreateTasksTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('name');
-            $table->integer('hours')->unsigned();
-            $table->integer('days')->unsigned();
+            $table->integer('hours')->unsigned()->nullable();
+            $table->integer('days')->unsigned()->nullable();
+
             $table->integer('project_id')->unsigned();
             $table->foreign('project_id')->references('id')->on('projects');
-            $table->integer('company_id')->unsigned();
+
+            $table->integer('company_id')->unsigned()->nullable();
             $table->foreign('company_id')->references('id')->on('companies');
+            
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
         });
